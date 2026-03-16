@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en" xmlns :th = "http://www.thymeleaf.org">
+<head>
+	<title>User Dashboard</title>
+	<style>
+		body{
+		    font-family: Arial, sans-serif;
+		    margin:0;
+		    background-color:#f4f6f9;
+		}
+		.header{
+		    background-color:rgb(64, 128, 128);
+		    color:white;
+		    padding:20px;
+		    font-size:20px;
+		    text-align:center;
+		}
+		.mainItem{
+		    margin-top:50px;
+		    text-align:center;
+		}
+		.btn{
+		    background-color:#3498db;
+		    color:white;
+		    border:none;
+		    padding:12px 25px;
+		    margin:10px;
+		    font-size:16px;
+		    border-radius:5px;
+		    cursor:pointer;
+		}
+		.logout{
+		    text-align:center;
+		    margin-top:40px;
+		}
+
+		.logout button{
+		    background-color:#e74c3c;
+		    color:white;
+		    border:none;
+		    padding:10px 20px;
+		    font-size:15px;
+		    border-radius:5px;
+		    cursor:pointer;
+		}
+	</style>
+</head>
+<body>
+	<div class="header">
+		Welcome, <b th:text="${name}"></b>            
+	</div>
+	<div class="mainItem">
+		<a th:href="@{/income}"><button class="btn">Add Income</button></a>
+		<a th:href="@{/expense}"><button class="btn">Add Expense</button></a>
+		<a th:href="@{/budget}"><button class="btn">Add Budget</button></a>
+		<a th:href="@{/transaction}"><button class="btn">Transaction History</button></a>
+	</div>
+	
+	
+	
+	<div class="logout">
+		<a th:href="@{/logout}" >
+			<button class="logout">Logout</button>
+		</a>
+	</div>
+		
+	
+</body>
+</html>

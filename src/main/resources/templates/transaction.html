@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" xmlns :th = "http://www.thymeleaf.org">
+<head>
+	<title>Trasaction History Page</title>
+	<style>
+		.income{
+			color: green;
+		}
+		.expense{
+			color: red;
+		}
+		body{
+			font-family: Arial;
+			background-color: aquamarine;
+		}
+		.container{
+			width: 800px;
+			margin: auto;
+		}
+		table{
+			width:100%;
+			border-collapse: collapse;
+			margin-top: 20px;
+		}
+		th,td{
+			border: 1px solid #ccc;
+			padding: 8px;
+			text-align: center;
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<h2>Transaction History</h2>
+		<table>
+			<thead>
+				<tr>
+					<th>Type</th>
+					<th>Category / Source</th>
+					<th>Amount</th>
+					<th>Date</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="inc : ${incomeList}">
+					<td class="income">Income</td>
+					<td th:text="${inc.source}"></td>
+					<td th:text="${inc.amount}"></td>
+					<td th:text="${inc.date}"></td>
+				</tr>
+				
+				<tr th:each="exp : ${expenseList}">
+					<td class="expense">Expense</td>
+					<td th:text="${exp.category}"></td>
+					<td th:text="${exp.amount}"></td>
+					<td th:text="${exp.date}"></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns :th = "http://www.thymeleaf.org">
+<head>
+	<title>Income Page</title>
+	<style>
+		.delete{
+			background: red;
+		}
+	</style>
+</head>
+<body>
+	<div>
+		<h2> Add Income Here</h2>
+		
+		<form th:object="${income}" method="post" th:action="@{/income}">
+			<p th:text="${success}" color="green"></p>
+			Source:
+			<input type="text" th:field="*{source}" required> <br><br>
+			Amount:
+			<input type="number" th:field="*{amount}" required> <br><br>
+			Date:
+			<input type="date" th:field="*{date}" required> <br><br>
+			<button type="submit">Add Income</button>
+		</form>
+		<br><br>
+		
+		<h2>Income History</h2>
+		
+		<table>
+			<thead>
+				<tr>
+					<th>Source</th>
+					<th>Amount</th>
+					<th>Date</th>
+				</tr>
+			</thead>
+			
+			<tbody>
+				<tr th:each="inc : ${incomelist}">
+					<td th:text="${inc.source}"></td>
+					<td th:text="${inc.amount}"></td>
+					<td th:text="${inc.date}"></td>
+					<td>
+						<a th:href="@{/deleteIncome/{id}(id=${inc.id})}">
+							<button class="delete">Delete</button>
+						</a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</body>
+</html>

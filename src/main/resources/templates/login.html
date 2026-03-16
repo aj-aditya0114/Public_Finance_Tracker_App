@@ -1,21 +1,91 @@
 <!DOCTYPE html>
-<html lang="en" xmlns :th = "http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head>
-	<title>User Login</title>
+<title>User Login</title>
+
+<style>
+
+body{
+    margin:0;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color:#f4f6f9;
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.container{
+    background:white;
+    padding:35px;
+    width:330px;
+    border-radius:6px;
+}
+
+h2{
+    text-align:center;
+    margin-bottom:20px;
+}
+
+input{
+    width:100%;
+    padding:8px;
+    margin-top:5px;
+    border:1px solid #ccc;
+    border-radius:4px;
+}
+
+button{
+    width:100%;
+    padding:9px;
+    margin-top:15px;
+    background-color:#2c3e50;
+    color:white;
+    border:none;
+    border-radius:4px;
+    font-size:15px;
+}
+
+.link{
+    text-align:center;
+    margin-top:15px;
+}
+
+.error{
+    text-align:center;
+    color:red;
+}
+
+</style>
+
 </head>
+
 <body>
-	<div>
-		<form th:action="@{/loggingin}" method="post" >
-			Name:
+
+	<div class="container">
+
+		<h2>User Login</h2>
+
+		<form th:action="@{/loggingin}" method="post">
+
+			Email:
 			<input type="email" name="email" placeholder="Enter email" required><br><br>
+
 			Password:
-			<input type="password" name="password" placeholder="Enter password" required><br><br>
+			<input type="password" name="password" placeholder="Enter password" required>
 
 			<button type="submit">Login</button>
+
 		</form>
-		<p th:text="${error}" style="color:red"></p>
-		<h4>New user? <a th:href="@{/signup}">Sign Up</a></h4>
-		                    
+
+		<p th:text="${error}" class="error"></p>
+
+		<div class="link">
+			<h4>New user? <a th:href="@{/signup}">Sign Up</a></h4>
+		</div>
+
 	</div>
+
 </body>
 </html>

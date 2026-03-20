@@ -3,8 +3,129 @@
 <head>
 	<title>Income Page</title>
 	<style>
-		.delete{
-			background: red;
+/* Reset */
+		body {
+		    font-family: "Times New Roman", serif;
+		    background-color: #f4f1ec;
+		    margin: 0;
+		    padding: 0;
+		}
+
+		/* Container */
+		div {
+		    width: 60%;
+		    margin: 40px auto;
+		    background: #ffffff;
+		    padding: 25px 35px;
+		    border-radius: 10px;
+		    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+		}
+
+		/* Headings */
+		h2 {
+		    text-align: center;
+		    color: #3b3b3b;
+		    border-bottom: 2px solid #d4af37;
+		    padding-bottom: 8px;
+		    margin-bottom: 20px;
+		}
+
+		/* Form labels */
+		form {
+		    text-align: left;
+		    margin-bottom: 30px;
+		}
+
+		/* Inputs */
+		input {
+		    width: 100%;
+		    padding: 8px;
+		    margin-top: 5px;
+		    border: 1px solid #ccc;
+		    border-radius: 5px;
+		    font-size: 14px;
+		    transition: 0.3s;
+		}
+
+		/* Input Hover & Focus */
+		input:focus {
+		    border-color: #d4af37;
+		    outline: none;
+		    box-shadow: 0 0 5px rgba(212,175,55,0.5);
+		}
+
+		/* Submit Button */
+		button {
+		    width: 100%;
+		    padding: 10px;
+		    background-color: #d4af37;
+		    color: white;
+		    border: none;
+		    border-radius: 5px;
+		    font-size: 16px;
+		    cursor: pointer;
+		    transition: 0.3s;
+		}
+
+		/* Button Hover */
+		button:hover {
+		    background-color: #b8962e;
+		    transform: scale(1.03);
+		}
+
+		/* Success Message */
+		p {
+		    text-align: center;
+		    font-weight: bold;
+		}
+
+		/* Table */
+		table {
+		    width: 100%;
+		    border-collapse: collapse;
+		    margin-top: 20px;
+		}
+
+		/* Table Header */
+		thead {
+		    background-color: #3b3b3b;
+		    color: white;
+		}
+
+		/* Table Cells */
+		th, td {
+		    padding: 10px;
+		    text-align: center;
+		    border-bottom: 1px solid #ddd;
+		}
+
+		/* Row Hover */
+		tbody tr:hover {
+		    background-color: #f9f5e9;
+		    transition: 0.3s;
+		}
+
+		/* Delete Button */
+		.delete-btn {
+		    background-color: #a94442;
+		    color: white;
+		    padding: 6px 12px;
+		    border-radius: 5px;
+		    text-decoration: none;
+		    transition: 0.3s;
+		}
+
+		/* Delete Hover */
+		.delete-btn:hover {
+		    background-color: #7a2f2d;
+		    transform: scale(1.05);
+		}
+
+		/* Responsive */
+		@media (max-width: 768px) {
+		    div {
+		        width: 90%;
+		    }
 		}
 	</style>
 </head>

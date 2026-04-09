@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en" xmlns :th = "http://www.thymeleaf.org">
+<head>
+	<title>Expense Page</title>
+	<style>
+		/* Page Background */
+		body {
+		    font-family: "Georgia", serif;
+		    background: #f8f5f2;
+		    margin: 0;
+		    padding: 0;
+		}
+
+		/* Main Container */
+		div {
+		    width: 60%;
+		    margin: 40px auto;
+		    background: #ffffff;
+		    padding: 25px 35px;
+		    border-radius: 12px;
+		    box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+		}
+
+		/* Headings */
+		h2 {
+		    text-align: center;
+		    color: #5a2a27;
+		    border-bottom: 2px solid #a94442;
+		    padding-bottom: 8px;
+		    margin-bottom: 20px;
+		}
+
+		/* Form Styling */
+		form {
+		    margin-bottom: 30px;
+		}
+
+		/* Labels */
+		label {
+		    font-weight: bold;
+		    color: #333;
+		}
+
+		/* Inputs */
+		input {
+		    width: 100%;
+		    padding: 9px;
+		    margin-top: 6px;
+		    margin-bottom: 15px;
+		    border: 1px solid #ccc;
+		    border-radius: 6px;
+		    transition: 0.3s;
+		    font-size: 14px;
+		}
+
+		/* Input Focus Effect */
+		input:focus {
+		    border-color: #a94442;
+		    outline: none;
+		    box-shadow: 0 0 6px rgba(169,68,66,0.4);
+		}
+
+		/* Submit Button */
+		button {
+		    width: 100%;
+		    padding: 10px;
+		    background: #a94442;
+		    color: white;
+		    border: none;
+		    border-radius: 6px;
+		    font-size: 15px;
+		    cursor: pointer;
+		    transition: 0.3s;
+		}
+
+		/* Button Hover */
+		button:hover {
+		    background: #7a2f2d;
+		    transform: scale(1.04);
+		}
+
+		/* Table */
+		table {
+		    width: 100%;
+		    border-collapse: collapse;
+		    margin-top: 20px;
+		}
+
+		/* Header */
+		thead {
+		    background: #5a2a27;
+		    color: white;
+		}
+
+		/* Cells */
+		th, td {
+		    padding: 10px;
+		    text-align: center;
+		    border-bottom: 1px solid #ddd;
+		}
+
+		/* Row Hover */
+		tbody tr:hover {
+		    background-color: #fbeaea;
+		    transition: 0.3s;
+		}
+
+		/* Delete Button (Link Style) */
+		.delete-btn {
+		    background: #c9302c;
+		    color: white;
+		    padding: 6px 12px;
+		    border-radius: 5px;
+		    text-decoration: none;
+		    transition: 0.3s;
+		}
+
+		/* Delete Hover */
+		.delete-btn:hover {
+		    background: #922d2a;
+		    transform: scale(1.05);
+		}
+
+		/* Responsive */
+		@media (max-width: 768px) {
+		    div {
+		        width: 90%;
+		    }
+		}
+		
+	</style>
+</head>
+<body>
+	<div>
+			<h2> Add Expense Here</h2>
+			<form th:object="${expense}" method="post" th:action="@{/expense}">
+				<label>Category:</label>
+				<p th:if="${error}" th:text="${error}" style="color:red; text-align: center;"></p>
+				<p th:if="${success}" th:text="${success}" style="color:green; text-align: center;"></p>
+				<input type="text" th:field="*{category}" required>
+
+				<label>Amount:</label>
+				<input type="number" th:field="*{amount}" required>
+
+				<label>Date:</label>
+				<input type="date" th:field="*{date}" required>
+				<button type="submit">Add Expense</button>
+			</form><br><br>	
+			<h2>Expense History</h2>
+			<table>
+				<thead>
+					<tr>
+						<th>Category</th>
+						<th>Amount</th>
+						<th>Date</th>
+						<th>Action</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="exp : ${expenselist}">
+						<td th:text="${exp.category}"></td>
+						<td th:text="${exp.amount}"></td>
+						<td th:text="${exp.date}"></td>
+						<td>
+							<a th:href="@{/deleteExpense/{id}(id=${exp.id})}" class="delete-btn">Delete</a>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			<a th:href="@{/dashboard}">
+				<button style="background-color: rgb(56, 211, 196); width: 100px;color: white;">
+					Back
+				</button>
+			</a>
+		</div>
+</body>
+</html>

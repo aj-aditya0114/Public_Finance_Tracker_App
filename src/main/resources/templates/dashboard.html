@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en" xmlns :th = "http://www.thymeleaf.org">
+<head>
+	<title>User Dashboard</title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+	   
+	<style>
+		body{
+		    font-family: Arial, sans-serif;
+		    margin:0;
+		    background-color:#f4f6f9;
+		}
+		.navbar{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #2c3e50;
+            padding: 15px 30px;
+            color: white;
+        }
+
+        .nav-links a{
+            color: white;
+            text-decoration: none;
+            margin-left: 20px;
+            font-weight: 500;
+        }
+
+        .nav-links a:hover{
+            text-decoration: underline;
+        }
+
+        .logout{
+            color: #ff7675;
+        }
+        .dashboard{
+            display: flex;
+            justify-content: space-around;
+            margin-top: 30px;
+        }
+
+        .card{
+            width: 220px;
+            padding: 20px;
+            background: white;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: 0.3s;
+        }
+
+        .card:hover{
+            transform: scale(1.05);
+        }
+
+        .card h3{
+            color: #2c3e50;
+        }
+        button{
+            padding: 10px 18px;
+            border-radius: 8px;
+            border: none;
+            background: linear-gradient(45deg, #3498db, #6dd5fa);
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        button:hover{
+            opacity: 0.9;
+        }
+	</style>
+</head>
+<body>
+	 <div class="navbar">
+	    <h2>💰 Finance Tracker Welcomes You, 
+			<span th:text="${name}"></span>	
+		</h2>
+
+	    <div class="nav-links">
+	        <a href="/transaction">Transaction</a>
+	        <a href="/income"><i class="fa-solid fa-money-bill"></i>Income</a>
+	        <a href="/expense"><i class="fa-solid fa-receipt"></i>Expense</a>
+	        <a href="/budget"><i class="fa-solid fa-wallet"></i>Budget</a>
+	        <a href="/logout" class="logout">Logout</a>
+	    </div>
+	</div>
+
+	<div class="dashboard">
+
+	    <div class="card">
+	        <h3>💵 Total Income </h3>
+	        <p th:text="${totalIncome}"></p>
+	    </div>
+
+	    <div class="card">
+	        <h3>💸 Total Expense</h3>
+	        <p th:text="${totalExpense}"></p>
+	    </div>
+
+	    <div class="card">
+	        <h3>💰 Savings</h3>
+	        <p th:text="${savings}"></p>
+	    </div>
+
+	</div>
+		
+	<form th:action="@{/process-sms}" method="post">
+		<textarea name="smsText" placeholder="Paste transaction SMS"></textarea>
+		<button type="submit">Process</button>
+	</form>
+</body>
+</html>

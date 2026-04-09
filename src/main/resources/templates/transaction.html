@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en" xmlns :th = "http://www.thymeleaf.org">
+<head>
+	<title>Trasaction History Page</title>
+	<style>
+		/* Page Background */
+		body {
+		    font-family: "Georgia", serif;
+		    background: #f4f6f8;
+		    margin: 0;
+		    padding: 0;
+		}
+
+		/* Container */
+		.container {
+		    width: 70%;
+		    margin: 40px auto;
+		    background: #ffffff;
+		    padding: 25px 35px;
+		    border-radius: 12px;
+		    box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+		}
+
+		/* Heading */
+		h2 {
+		    text-align: center;
+		    color: #2c3e50;
+		    border-bottom: 2px solid #ccc;
+		    padding-bottom: 10px;
+		    margin-bottom: 25px;
+		}
+
+		/* Table */
+		table {
+		    width: 100%;
+		    border-collapse: collapse;
+		}
+
+		/* Header */
+		thead {
+		    background: #2c3e50;
+		    color: white;
+		}
+
+		th {
+		    padding: 12px;
+		    font-weight: bold;
+		    letter-spacing: 0.5px;
+		}
+
+		/* Table Cells */
+		td {
+		    padding: 10px;
+		    text-align: center;
+		    border-bottom: 1px solid #ddd;
+		}
+
+		/* Row Hover */
+		tbody tr:hover {
+		    background: #f1f1f1;
+		    transition: 0.3s;
+		}
+
+		/* Income Styling */
+		.income {
+		    color: #2e7d32;
+		    font-weight: bold;
+		}
+
+		/* Expense Styling */
+		.expense {
+		    color: #c62828;
+		    font-weight: bold;
+		}
+
+		/* Amount Colors */
+		td:nth-child(3) {
+		    font-weight: bold;
+		}
+
+		/* Highlight income rows */
+		tr:has(.income) td:nth-child(3) {
+		    color: #2e7d32;
+		}
+
+		/* Highlight expense rows */
+		tr:has(.expense) td:nth-child(3) {
+		    color: #c62828;
+		}
+
+		/* Smooth row animation */
+		tbody tr {
+		    transition: transform 0.2s ease;
+		}
+
+		tbody tr:hover {
+		    transform: scale(1.01);
+		}
+
+		/* Responsive */
+		@media (max-width: 768px) {
+		    .container {
+		        width: 95%;
+		    }
+
+		    th, td {
+		        font-size: 12px;
+		        padding: 8px;
+		    }
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<h2>Transaction History</h2>
+		<input type="text" id="searchInput" onkeyup="filterTable()" placeholder="Search income / expense / category" style="margin-bottom: 10px; padding: 10px 20px; border-radius: 5px;width: 300px; ">
+		
+		<table id="transactionTable">
+			<thead>
+				<tr>
+					<th>Type</th>
+					<th>Category / Source</th>
+					<th>Amount</th>
+					<th>Date</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="inc : ${incomeList}">
+					<td class="income">Income</td>
+					<td th:text="${inc.source}"></td>
+					<td th:text="${inc.amount}"></td>
+					<td th:text="${inc.date}"></td>
+				</tr>
+				
+				<tr th:each="exp : ${expenseList}">
+					<td class="expense">Expense</td>
+					<td th:text="${exp.category}"></td>
+					<td th:text="${exp.amount}"></td>
+					<td th:text="${exp.date}"></td>
+				</tr>
+			</tbody>
+		</table>
+		<a th:href="@{/dashboard}">
+			<button style="background-color: rgb(0, 255, 255); width: 100px; color: white; padding: 10px 20px; margin-top: 10px; border: none; border-radius: 5px;">
+				Back
+			</button>
+		</a>
+	</div>
+	
+	<div>
+		
+		<script>
+			function filterTable(){
+				let input = document.getElementById("searchInput").value.toLowerCase();
+				let rows = document.querySelectorAll("#transactionTable tbody tr");
+				
+				for(let i = 0; i < rows.length; i++){
+					let text = rows[i].innerText.toLowerCase();
+					
+					if(text.includes(input)){
+						rows[i].style.display = "";
+					}else{
+						rows[i].style.display = "none"
+					}
+				}
+			}
+		</script>
+</body>
+</html>
